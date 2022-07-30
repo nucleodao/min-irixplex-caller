@@ -1,2 +1,3 @@
 # min-irixplex-caller
-demo for call irisplex binary from by python
+
+a demo to show how we call irisplex binary from python
