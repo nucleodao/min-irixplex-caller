@@ -14,13 +14,21 @@ def parse_args():
     parser.add_argument("-u", '--url', action='store')
     return parser.parse_args()
 
-def check_docker_installation() -> bool:
-  return subprocess.check_output('docker -v', shell=True).decode("utf-8").strip().startswith('Docker')
-
+def check_docker_installation():
+  docker_installed = subprocess.check_output('docker -v', shell=True).decode("utf-8").strip().startswith('Dsocker')
+  if docker_installed == False:
+    print('Sorry our demo requires docker installed. (docker is just required for demo purpose)')
+    answer = str(input('Do you want us to install docker on your system? (Y/N)')).lower()
+    if answer == 'y' or answer == "yes":
+      print('we are installing docker for you ...')
+      print(subprocess.check_output('pip install docker', shell=True).decode("utf-8").strip())
+      print('docker installed. proceeding ...')
+    else:
+      print('aborted, bye')
+      sys.exit(0)
+    
 def main():  
-  if check_docker_installation() == False:
-    print('sorry our demo requires docker installed. (docker is just required for demo purpose)')
-    sys.exit(1)
+  check_docker_installation()
 
   args = parse_args()
   url = args.url
@@ -31,6 +39,6 @@ def main():
   answer = subprocess.check_output(cmd, shell=True).decode("utf-8").strip()
 
   print('analyze result:', answer)
-  
+
 if __name__ == '__main__':
     main()
