@@ -15,7 +15,7 @@ def parse_args():
     return parser.parse_args()
 
 def check_docker_installation():
-  docker_installed = subprocess.check_output('docker -v', shell=True).decode("utf-8").strip().startswith('Dsocker')
+  docker_installed = subprocess.check_output('docker -v', shell=True).decode("utf-8").strip().startswith('Docker')
   if docker_installed == False:
     print('Sorry our demo requires docker installed. (docker is just required for demo purpose)')
     answer = str(input('Do you want us to install docker on your system? (Y/N)')).lower()
