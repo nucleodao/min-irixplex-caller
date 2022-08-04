@@ -33,7 +33,7 @@ def main():
   args = parse_args()
   url = args.url
   if url is None:
-    url = 'https://drive.google.com/file/d/1lNDKC7nNfXVW-To4PibKh08GFp8jzrrE/view?usp=sharing' # this is our test genome file
+    url = 'https://storage.googleapis.com/mj_public_storage/genome.txt' # this is our test genome file
       
   cmd = 'docker run ilovelili/min-irisplex-binary:latest analyze --url={}'.format(url)
   answer = subprocess.check_output(cmd, shell=True).decode("utf-8").strip()
